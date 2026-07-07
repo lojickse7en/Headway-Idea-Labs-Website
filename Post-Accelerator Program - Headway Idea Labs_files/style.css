@@ -1,0 +1,16 @@
+.wbte_sc_cpns_pp_card { border: 2px dashed #e9eaee; border-radius: 12px; padding: 15px; background-color: #fff; box-sizing: border-box; margin-bottom: 5px; }
+.wbte_sc_cpns_pp_discount_badge { background-color: #d1f3d8; color: #137333; font-size: 12px; padding: 5px 10px; border-radius: 20px; display: inline-block; font-weight: 600; margin-bottom: 5px; }
+.wbte_sc_cpns_pp_discount_badge .amount { color: #137333; }
+.wbte_sc_cpns_pp_card_coupon_box { background-color: #f7f9fa; border-radius: 10px; padding: 5px 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border: 1px solid #eff0f3; }
+.wbte_sc_cpns_pp_code { font-weight: bold; font-size: 16px; letter-spacing: 1px; color: #1c1c1e; }
+.wbte_sc_cpns_pp_copy_btn { background-color: #000; color: white; border: none !important; padding: 8px 14px !important; border-radius: 8px !important; font-size: 12px; cursor: pointer; display: flex !important; align-items: center; gap: 6px; }
+.wbte_sc_cpns_pp_copy_btn svg { color: currentColor; }
+.wbte_sc_cpns_pp_copy_btn:hover { background-color: #3662e3; color: #fff !important; }
+.wbte_sc_cpns_pp_copy_btn:focus { outline: none; }
+.wbte_sc_cpns_pp_desc { font-size: 16px; font-weight: 500; color: #2e2e2e; margin: 0; }
+.wbte_sc_cpns_pp_restriction_text { color: #555; font-size: 14px; margin: 0; font-style: italic; margin-bottom: 5px; }
+.wbte_sc_cpns_pp_footer { display: flex; flex-direction: column; font-size: 14px; color: #4b5563; }
+.wbte_sc_cpns_pp_footer_row { display: flex; justify-content: space-between; align-items: center; }
+.wbte_sc_cpns_pp_footer_row .wbte_sc_cpns_pp_footer_label { display: flex; align-items: center; gap: 6px; }
+.wbte_sc_cpns_pp_footer_row .wbte_sc_cpns_pp_footer_icon { font-size: 14px; color: #6b7280; }
+.wbte_sc_cpns_pp_footer_row .wbte_sc_cpns_pp_footer_value { font-weight: 600; }

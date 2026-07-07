@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Headway Post-Accelerator — Developer Build Spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0e2a4d;--orange:#f5841f;--ink:#2a3342;--muted:#5b6676;--line:#e7ebf1;
+    --head:'Poppins',sans-serif;--body:'Open Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--body);color:var(--ink);background:#f4f6f9;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .page{max-width:920px;margin:0 auto;background:#fff;}
+  h1,h2,h3,h4{font-family:var(--head);color:var(--navy);margin:0;line-height:1.18;letter-spacing:-.01em;}
+  code,.mono{font-family:var(--mono);font-size:.86em;}
+
+  /* cover */
+  .cover{background:radial-gradient(120% 140% at 85% -10%,#1f558a 0%,#123a63 45%,#0a2138 100%);color:#fff;padding:64px 56px 56px;}
+  .cover .kick{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#f7b15a;margin-bottom:18px;}
+  .cover h1{color:#fff;font-size:40px;font-weight:800;margin-bottom:14px;}
+  .cover p{color:#cdd9e6;font-size:16px;max-width:560px;}
+  .cover .meta{display:flex;gap:40px;margin-top:34px;flex-wrap:wrap;}
+  .cover .meta div{font-size:13.5px;color:#9fb6d2;}
+  .cover .meta b{display:block;font-family:var(--head);font-weight:600;color:#fff;font-size:15px;margin-top:3px;}
+
+  .body{padding:52px 56px 64px;}
+  section.block{margin-bottom:52px;}
+  .eyebrow{display:inline-block;font-family:var(--head);font-weight:700;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;}
+  h2.sec{font-size:25px;font-weight:700;margin-bottom:6px;}
+  .sec-sub{color:var(--muted);font-size:15px;margin-bottom:24px;}
+
+  /* swatches */
+  .sw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .sw{border:1px solid var(--line);border-radius:11px;overflow:hidden;}
+  .sw .chip{height:74px;}
+  .sw .meta{padding:11px 13px;}
+  .sw .name{font-family:var(--head);font-weight:600;font-size:13px;color:var(--navy);}
+  .sw .hex{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:2px;text-transform:uppercase;}
+  .sw .var{font-family:var(--mono);font-size:10.5px;color:#9aa6b4;margin-top:3px;}
+
+  /* type rows */
+  .type-row{display:flex;align-items:baseline;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .type-row:last-child{border-bottom:none;}
+  .type-spec{flex:none;width:210px;font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.5;}
+  .type-spec b{color:var(--navy);font-family:var(--head);font-size:13px;display:block;margin-bottom:2px;letter-spacing:0;}
+  .type-demo{font-family:var(--head);color:var(--navy);}
+
+  /* token table */
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{text-align:left;font-family:var(--head);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:0 14px 10px;border-bottom:2px solid var(--line);}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  td.k{font-family:var(--mono);font-size:12.5px;color:var(--navy);white-space:nowrap;}
+  td.v{font-family:var(--mono);font-size:12.5px;color:var(--muted);}
+  td.d{color:var(--ink);}
+
+  .callout{background:#FFF9F3;border:1px solid #f3dcc2;border-radius:12px;padding:18px 22px;font-size:14px;color:#8a5a22;}
+  .callout b{color:#6d4516;}
+  .codeblk{background:#0e1b2c;color:#cde3ff;border-radius:11px;padding:18px 20px;font-family:var(--mono);font-size:12.5px;line-height:1.7;overflow-x:auto;white-space:pre;}
+  .codeblk .c{color:#6f86a8;}
+  .codeblk .o{color:#f7b15a;}
+
+  /* gradient demo */
+  .grad-demo{height:64px;border-radius:11px;background:linear-gradient(95.4deg,#FD7900 63%,#F8B170 100%);margin-bottom:14px;box-shadow:-2px 23px 89.1px 0px rgba(253,123,3,.349);}
+  .btn-demo{display:inline-flex;align-items:center;padding:13px 26px;border-radius:6px;background:linear-gradient(95.4deg,#FD7900 63%,#F8B170 100%);color:#fff;font-family:var(--head);font-weight:600;font-size:15px;}
+
+  /* sections list */
+  .sec-item{display:grid;grid-template-columns:38px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .sec-item:last-child{border-bottom:none;}
+  .sec-n{width:38px;height:38px;border-radius:9px;background:var(--navy);color:#fff;font-family:var(--head);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .sec-item h4{font-size:17px;font-weight:600;margin-bottom:4px;}
+  .sec-item .bg{font-family:var(--mono);font-size:11px;color:var(--orange);text-transform:uppercase;letter-spacing:.03em;}
+  .sec-item p{color:var(--muted);font-size:14px;margin:6px 0 0;}
+  .sec-item .copy{margin-top:8px;font-size:13.5px;color:var(--ink);background:#f6f8fb;border-left:3px solid var(--orange);padding:8px 12px;border-radius:0 7px 7px 0;}
+
+  ul.clean{margin:0;padding-left:20px;color:var(--ink);font-size:14px;}
+  ul.clean li{margin-bottom:7px;}
+
+  a{color:var(--orange);}
+  @media print{body{background:#fff;}.page{max-width:none;}}
+  @media (max-width:680px){
+    .sw-grid{grid-template-columns:1fr 1fr;}
+    .cover,.body{padding-left:26px;padding-right:26px;}
+    .type-row{flex-direction:column;gap:6px;}
+    .type-spec{width:auto;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="kick">Developer Build Spec</div>
+    <h1>Post-Accelerator Program Page</h1>
+    <p>Everything needed to rebuild this page in WordPress / Elementor — design tokens, type scale, components, section structure, and assets. Pair with the standalone HTML reference.</p>
+    <div class="meta">
+      <div>Client<b>Headway Idea Labs</b></div>
+      <div>Platform<b>WordPress · Elementor</b></div>
+      <div>Design width<b>1440px · mobile 390px</b></div>
+      <div>Container<b>1180px max</b></div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- FONTS -->
+    <section class="block">
+      <div class="eyebrow">01 · Typography</div>
+      <h2 class="sec">Two families</h2>
+      <p class="sec-sub">Headings in Poppins, body in Open Sans. Load both from Google Fonts.</p>
+      <div class="codeblk"><span class="c">&lt;!-- in &lt;head&gt; --&gt;</span>
+&lt;link href="https://fonts.googleapis.com/css2?family=<span class="o">Poppins</span>:wght@400;500;600;700;800&amp;family=<span class="o">Open+Sans</span>:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</div>
+      <div style="height:22px;"></div>
+      <div class="type-row">
+        <div class="type-spec"><b>H1 / Hero</b>Poppins 800 · 54px<br>line 1.15 · tracking -.01em</div>
+        <div class="type-demo" style="font-size:38px;font-weight:800;">Investor worthiness.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-spec"><b>H2 / Section</b>Poppins 700 · 36–40px</div>
+        <div class="type-demo" style="font-size:30px;font-weight:700;">The missing layer after demo day.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-spec"><b>H3 / Card title</b>Poppins 600 · 18.5–20px</div>
+        <div class="type-demo" style="font-size:20px;font-weight:600;">Founder transformation</div>
+      </div>
+      <div class="type-row">
+        <div class="type-spec"><b>Eyebrow / Label</b>Poppins 700 · 12px<br>uppercase · tracking .15em</div>
+        <div class="type-demo" style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);">Why this exists</div>
+      </div>
+      <div class="type-row">
+        <div class="type-spec"><b>Body</b>Open Sans 400 · 15–17px<br>line 1.6 · color #5b6676</div>
+        <div class="type-demo" style="font-family:var(--body);font-size:16px;font-weight:400;color:var(--muted);max-width:380px;line-height:1.6;">A structured founder development track for accelerators and ecosystem partners.</div>
+      </div>
+    </section>
+
+    <!-- COLORS -->
+    <section class="block">
+      <div class="eyebrow">02 · Color tokens</div>
+      <h2 class="sec">Palette</h2>
+      <p class="sec-sub">Navy + orange brand, with two off-white section backgrounds for rhythm.</p>
+      <div class="sw-grid">
+        <div class="sw"><div class="chip" style="background:#0e2a4d;"></div><div class="meta"><div class="name">Navy</div><div class="hex">#0E2A4D</div><div class="var">--navy</div></div></div>
+        <div class="sw"><div class="chip" style="background:#f5841f;"></div><div class="meta"><div class="name">Orange</div><div class="hex">#F5841F</div><div class="var">--orange</div></div></div>
+        <div class="sw"><div class="chip" style="background:#40A9C9;"></div><div class="meta"><div class="name">Teal (hover)</div><div class="hex">#40A9C9</div><div class="var">card hover</div></div></div>
+        <div class="sw"><div class="chip" style="background:#281F18;"></div><div class="meta"><div class="name">Footer brown</div><div class="hex">#281F18</div><div class="var">footer bg</div></div></div>
+        <div class="sw"><div class="chip" style="background:#2a3342;"></div><div class="meta"><div class="name">Ink</div><div class="hex">#2A3342</div><div class="var">--ink</div></div></div>
+        <div class="sw"><div class="chip" style="background:#5b6676;"></div><div class="meta"><div class="name">Muted</div><div class="hex">#5B6676</div><div class="var">--muted</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FFF9F3;border-bottom:1px solid var(--line);"></div><div class="meta"><div class="name">Warm bg</div><div class="hex">#FFF9F3</div><div class="var">alt sections</div></div></div>
+        <div class="sw"><div class="chip" style="background:#e7ebf1;"></div><div class="meta"><div class="name">Line</div><div class="hex">#E7EBF1</div><div class="var">--line</div></div></div>
+      </div>
+      <div style="height:18px;"></div>
+      <table>
+        <tr><th>Token</th><th>Value</th><th>Used for</th></tr>
+        <tr><td class="k">--navy</td><td class="v">#0E2A4D</td><td class="d">All headings, nav text, step circles, mchip</td></tr>
+        <tr><td class="k">--orange</td><td class="v">#F5841F</td><td class="d">Accents, eyebrows, links, icon strokes, highlights</td></tr>
+        <tr><td class="k">Teal hover</td><td class="v">#40A9C9</td><td class="d">Framework card hover fill + "Founder transformation" chip</td></tr>
+        <tr><td class="k">Footer</td><td class="v">#281F18</td><td class="d">Footer background (dark brown)</td></tr>
+        <tr><td class="k">Newsletter btn</td><td class="v">#4C5B6B</td><td class="d">Footer "Sign Up" button (slate, not orange)</td></tr>
+        <tr><td class="k">Success green</td><td class="v">#1F8A5B</td><td class="d">Hero dashboard "Live" + check rows</td></tr>
+      </table>
+    </section>
+
+    <!-- GRADIENT / BUTTONS -->
+    <section class="block">
+      <div class="eyebrow">03 · Buttons</div>
+      <h2 class="sec">The orange gradient</h2>
+      <p class="sec-sub">Every primary button uses this exact gradient. On hover, no color change — only a soft drop-glow + 2px lift.</p>
+      <div class="grad-demo"></div>
+      <div class="codeblk"><span class="c">/* primary button fill */</span>
+background: <span class="o">linear-gradient(95.4deg, #FD7900 63%, #F8B170 100%)</span>;
+color: #fff; border-radius: 6px; padding: 13px 26px;
+font: 600 15px Poppins;
+
+<span class="c">/* hover — glow only, keep the gradient */</span>
+box-shadow: <span class="o">-2px 23px 89.1px 0 rgba(253,123,3,.349)</span>;
+transform: translateY(-2px);</div>
+      <div style="margin-top:18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <span class="btn-demo">Schedule Your Free Consultation</span>
+        <span style="font-size:13px;color:var(--muted);">← primary CTA</span>
+      </div>
+      <div style="height:16px;"></div>
+      <div class="callout"><b>Elementor tip:</b> set this gradient once as a Global Button style (Background → Gradient, angle 95°, stops #FD7900 @63% and #F8B170 @100%), and the glow as the hover Box Shadow. Outline CTA on the dark band = transparent fill, 1.5px rgba(255,255,255,.7) border, white text.</div>
+    </section>
+
+    <!-- LAYOUT -->
+    <section class="block">
+      <div class="eyebrow">04 · Layout system</div>
+      <h2 class="sec">Spacing &amp; grid</h2>
+      <table>
+        <tr><th>Property</th><th>Value</th><th>Notes</th></tr>
+        <tr><td class="d">Content container</td><td class="v">max-width 1180px</td><td class="d">28px side padding (20px on mobile)</td></tr>
+        <tr><td class="d">Section vertical padding</td><td class="v">84px top/bottom</td><td class="d">58px on mobile (≤620px)</td></tr>
+        <tr><td class="d">Card / panel radius</td><td class="v">14–24px</td><td class="d">Cards 14–16px · dark panels 20px · hero dash 24px</td></tr>
+        <tr><td class="d">Grid gap</td><td class="v">26px</td><td class="d">Card grids; 40–64px for 2-col splits</td></tr>
+        <tr><td class="d">Desktop / mobile breakpoints</td><td class="v">980px · 620px</td><td class="d">Nav collapses to hamburger at 980px</td></tr>
+      </table>
+    </section>
+
+    <!-- SECTION STRUCTURE -->
+    <section class="block">
+      <div class="eyebrow">05 · Page structure</div>
+      <h2 class="sec">Sections, in order</h2>
+      <p class="sec-sub">Backgrounds alternate white / warm (#FFF9F3) for rhythm. Header is sticky; footer is dark brown.</p>
+
+      <div class="sec-item"><div class="sec-n">H</div><div>
+        <h4>Sticky header</h4><div class="bg">bg #FFFFFF</div>
+        <p>Logo left · nav center (About, Programs▾, Services▾, Startup Funding▾, Resources▾ with hover dropdowns) · orange Login button right. Collapses to hamburger + slide-in menu below 980px.</p>
+      </div></div>
+
+      <div class="sec-item"><div class="sec-n">1</div><div>
+        <h4>Hero</h4><div class="bg">bg banner.webp + #FEF7F0</div>
+        <p>Left: eyebrow, H1 (orange "investor worthiness."), lead, orange CTA. Right: "Founder Readiness" dashboard card — 82% gauge, 3 checklist rows, floating "Capital matched $4.2M" toast. <b>Dashboard is decorative</b> (built in CSS/SVG) — rebuild as an image or Elementor widgets.</p>
+        <div class="copy">H1: "Keep founders connected after the cohort ends — and move them closer to <b>investor worthiness.</b>"</div>
+      </div></div>
+
+      <div class="sec-item"><div class="sec-n">2</div><div>
+        <h4>Worksheets</h4><div class="bg">bg #FFFFFF</div>
+        <p>Centered header + 6 rounded pill chips (Investor narrative, Capital roadmap, Milestone tracking, Financial clarity, Accountability rhythm, Pitch proficiency), each with an orange dot.</p>
+        <div class="copy">H2: "60+ operating worksheets turn advice into <b>execution.</b>"</div>
+      </div></div>
+
+      <div class="sec-item"><div class="sec-n">3</div><div>
+        <h4>End-to-end journey</h4><div class="bg">bg #FFF9F3</div>
+        <p>Two columns: left dark navy panel (label, H2, paragraph); right a 4-step stack (01 Pre-Accelerator → 02 Accelerator → <b>03 Post-Accelerator, highlighted "You are here"</b> → 04 Ecosystem Investor Connection). Step circles navy; featured step = orange border + peach tint + orange badge.</p>
+        <div class="copy">H2: "Where the post-accelerator step fits in the founder journey."</div>
+      </div></div>
+
+      <div class="sec-item"><div class="sec-n">4</div><div>
+        <h4>Who it's built for</h4><div class="bg">bg #FFFFFF</div>
+        <p>Centered header + 2 cards (Structured founder development · Lower program burden), each with an orange check icon. Cards lift + light-blue border on hover.</p>
+        <div class="copy">H2: "Designed for accelerators, not one-off consulting."</div>
+      </div></div>
+
+      <div class="sec-item"><div class="sec-n">5</div><div>
+        <h4>Why this exists</h4><div class="bg">bg #FFF9F3</div>
+        <p>Split header (H2 left with orange "demo day.", intro right) + 3 cards with square icon chips (navy / teal / orange): Programming continuity · Founder transformation · Capital discipline.</p>
+        <div class="copy">H2: "The missing layer after <b>demo day.</b>"</div>
+      </div></div>
+
+      <div class="sec-item"><div class="sec-n">6</div><div>
+        <h4>Dark CTA band</h4><div class="bg">bg navy radial gradient</div>
+        <p>Rounded dark-blue box with faint network texture; overlaps the footer (pulled down ~150px). Two buttons: orange "Download Program Overview PDF" + outline "Inquire About Partnership Opportunities".</p>
+        <div class="copy">H2: "Let's Build a Founder Journey That Doesn't Stop at Demo Day"</div>
+      </div></div>
+
+      <div class="sec-item"><div class="sec-n">F</div><div>
+        <h4>Footer</h4><div class="bg">bg #281F18</div>
+        <p>Three columns (logo + socials · nav links · newsletter signup with slate #4C5B6B button), faint orange/teal arrow motif top-right, bottom bar with copyright + Privacy Policy. CTA band sinks into the top.</p>
+      </div></div>
+    </section>
+
+    <!-- ASSETS -->
+    <section class="block">
+      <div class="eyebrow">06 · Assets</div>
+      <h2 class="sec">Only two image files</h2>
+      <p class="sec-sub">Everything else — gauge, journey steps, all icons, check marks, social icons, footer arrows, CTA texture — is inline SVG or pure CSS. Resolution-independent, nothing to export.</p>
+      <table>
+        <tr><th>Asset</th><th>Source (already in WP media library)</th></tr>
+        <tr><td class="d">Hero background banner</td><td class="v">headwayidealabs.io/wp-content/uploads/2025/09/banner.webp</td></tr>
+        <tr><td class="d">Logo (header + footer)</td><td class="v">headwayidealabs.io/wp-content/uploads/2024/06/Headway-Idea-Labs-Logo.png</td></tr>
+      </table>
+      <div style="height:14px;"></div>
+      <div class="callout">Footer logo is the same PNG with a white filter (<code>brightness(0) invert(1)</code>) — or supply a white version. The hero dashboard graphic is the chosen "Option 1" direction; rebuild it with Elementor widgets/icons, or drop in an exported PNG of that card.</div>
+    </section>
+
+    <!-- ELEMENTOR NOTES -->
+    <section class="block">
+      <div class="eyebrow">07 · Elementor build notes</div>
+      <h2 class="sec">Recommended mapping</h2>
+      <ul class="clean">
+        <li><b>Global fonts:</b> set Primary = Poppins, Text = Open Sans in Site Settings → Typography.</li>
+        <li><b>Global colors:</b> register Navy #0E2A4D, Orange #F5841F, Teal #40A9C9, Footer #281F18, Warm #FFF9F3.</li>
+        <li><b>Sections:</b> each block above = one Elementor Section; set the listed background and 84px top/bottom padding.</li>
+        <li><b>Cards:</b> use a 3-col (or 2-col) inner-section / loop grid; set hover background to teal #40A9C9 with white text + 4px lift (Hover → Transform translateY -4px).</li>
+        <li><b>Pill chips &amp; step list:</b> Icon Box widgets; pills = full border-radius (100px), steps = numbered circle + heading + text.</li>
+        <li><b>CTA overlap:</b> give the CTA section a negative bottom margin (~ -150px) and a higher z-index so it sinks into the footer.</li>
+        <li><b>Dropdown nav:</b> Elementor's Mega Menu / Nav Menu with sub-items matching the live site IA.</li>
+      </ul>
+    </section>
+
+    <div class="callout" style="background:#eef5fb;border-color:#bcd8f5;color:#1c3c63;">
+      <b>Reference file:</b> open the standalone HTML alongside this spec — every exact value (px, hex, shadow) is inspectable in the browser dev tools. This spec is the summary; the HTML is the source of truth.
+    </div>
+
+  </div>
+</div>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#0e2a4d"/>
+    <path d="M28 30h44M28 44h44M28 58h30" stroke="#f5841f" stroke-width="5" stroke-linecap="round"/>
+  </svg>
+</template>
+
+</body>
+</html>

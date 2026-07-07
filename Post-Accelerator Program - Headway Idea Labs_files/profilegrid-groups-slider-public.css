@@ -1,0 +1,105 @@
+/*------  -------*/
+
+
+.pg-group-slider {}
+
+.pg-slick-slide {
+    margin: 0px 20px;
+}
+
+.pg-slick-slide img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.pg-slick-prev:before,
+.pg-slick-next:before {
+    color: black !Important;
+}
+
+.pg-slick-prev:hover,
+.pg-slick-next:hover {
+    text-decoration: none;
+}
+
+
+.pg-slick-slide {
+    transition: all ease-in-out .3s;
+    opacity: .2;
+}
+
+.slick-active {
+    opacity: .5;
+}
+
+.slick-current {
+    opacity: 1;
+}
+
+
+.pg-group-slider .pg-slick-slide {
+    max-width: 100%;
+    border: 1px solid rgb(246 246 246 / 30%);
+    background-color: transparent;
+    box-shadow: 1px 1px 12px 0px rgb(212 212 212 / 0.25);
+    border-radius: 12px;
+    min-height: 130px;
+    overflow: hidden;
+    height: auto;
+    opacity: 1;
+}
+
+.pg-group-slider .pg-slick-slide a{    
+    outline: 0px;
+    box-shadow: none;
+    display: initial;
+}
+
+.pg-group-slider-wrap .pg-slider-group-badge {}
+.pg-group-slider-wrap .pg-slider-group-name {
+    font-size: 14px;
+    padding: 10px 8px;
+    box-shadow: none;
+    float: left;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+
+}
+
+
+.pg-group-slider-wrap .pg-slider-group-badge img.pm-group-badge {
+    width: 100%;
+    margin: 0px auto;
+    object-fit: cover;
+    min-height: 130px;
+}
+
+
+.pg-group-slider .slick-arrow {
+    font-size: 0px;
+    box-shadow: none;
+    text-decoration: none !important;
+}
+
+.pg-group-slider .slick-arrow:before {
+    color: inherit !important;
+    font-size: 30px;
+} 
+
+.pg-group-slider .slick-arrow:hover{}
+
+
+.pg-group-slider {
+    width: 78%;
+    margin: 0px auto;
+    overflow: visible !important;
+}
+
+.pg-slick-slide img {
+    box-shadow: none !important;
+}
+
