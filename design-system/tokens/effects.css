@@ -1,0 +1,25 @@
+:root{
+  /* elevation */
+  --hw-shadow-card:0 10px 30px -22px rgba(14,42,77,.4);
+  --hw-shadow-card-hover:0 22px 40px -24px rgba(33,103,178,.5);
+  --hw-shadow-panel:0 18px 50px -30px rgba(14,42,77,.5);
+  --hw-shadow-float:0 20px 44px -20px rgba(14,42,77,.5);
+  --hw-shadow-dropdown:0 18px 40px -14px rgba(14,42,77,.22);
+  --hw-shadow-pill:0 6px 18px -14px rgba(14,42,77,.3);
+
+  /* the signature button glow — hover only, gradient never changes */
+  --hw-glow-button:-2px 23px 89.1px 0px rgba(253,123,3,.349);
+  --hw-glow-pill:0 12px 26px -16px rgba(245,132,31,.55);
+
+  /* motion */
+  --hw-ease:cubic-bezier(.4,0,.2,1);
+  --hw-dur-fast:.15s;
+  --hw-dur:.2s;
+  --hw-dur-slow:.28s;
+  --hw-lift:-2px;
+  --hw-lift-card:-4px;
+
+  /* borders */
+  --hw-border:1px solid var(--hw-line);
+  --hw-border-featured:2px solid var(--hw-orange);
+}

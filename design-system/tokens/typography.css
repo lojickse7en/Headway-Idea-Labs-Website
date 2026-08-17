@@ -1,0 +1,44 @@
+:root{
+  /* families */
+  --hw-font-head:'Poppins', system-ui, -apple-system, sans-serif;
+  --hw-font-body:'Open Sans', system-ui, -apple-system, sans-serif;
+
+  /* weights */
+  --hw-w-regular:400;
+  --hw-w-medium:500;
+  --hw-w-semibold:600;
+  --hw-w-bold:700;
+  --hw-w-extrabold:800;
+
+  /* display / heading scale (desktop) */
+  --hw-text-h1:54px;
+  --hw-text-h2:38px;
+  --hw-text-h2-sm:36px;
+  --hw-text-h3:20px;
+  --hw-text-h4:18.5px;
+  --hw-text-stat:38px;
+
+  /* body scale */
+  --hw-text-lead:17px;
+  --hw-text-body:16px;
+  --hw-text-body-sm:15px;
+  --hw-text-caption:14.7px;
+  --hw-text-fine:13px;
+
+  /* eyebrow / label */
+  --hw-text-eyebrow:12px;
+  --hw-track-eyebrow:.15em;
+
+  /* line heights */
+  --hw-lh-tight:1.15;
+  --hw-lh-heading:1.18;
+  --hw-lh-body:1.6;
+  --hw-lh-relaxed:1.62;
+
+  /* letter spacing */
+  --hw-track-heading:-.01em;
+
+  /* mobile heading overrides */
+  --hw-text-h1-mobile:31px;
+  --hw-text-h2-mobile:27px;
+}

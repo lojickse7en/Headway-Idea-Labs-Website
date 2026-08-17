@@ -1,0 +1,76 @@
+<!-- @dsCard group="Components" viewport="700x680" subtitle="Section heading, cards, steps, pills, stats, badges" name="Content" -->
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:20px;font-family:var(--hw-font-body);background:#fff;color:var(--hw-ink)}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.lbl{font-family:var(--hw-font-head);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9AA6B4;margin:0 0 9px}
+.dark{background:var(--hw-gradient-navy);border-radius:14px;padding:18px}</style>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const NEEDS = ["SectionHeading","FeatureCard","StepCard","Pill","StatBlock","Badge","Testimonial"];
+function findNS(){
+  for (const k of Object.keys(window)) {
+    try { const v = window[k];
+      if (v && typeof v === 'object' && NEEDS.every(n => typeof v[n] === 'function')) return v;
+    } catch(e){}
+  }
+  return null;
+}
+const NS = findNS() || {};
+const { SectionHeading, FeatureCard, StepCard, Pill, StatBlock, Badge, Testimonial } = NS;
+
+const Ico = ({d}) => (<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{d}</svg>);
+function Card(){
+  return (
+    <div style={{display:'grid',gap:22}}>
+      <SectionHeading eyebrow="Why this exists" align="split"
+        title={<>The missing layer after <span style={{color:'var(--hw-orange)'}}>demo day.</span></>}
+        intro="Accelerators often tell founders what to do. Headway helps founders learn how to do the work." />
+      <div>
+        <p className="lbl">Feature cards &middot; rotate chip colours</p>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'var(--hw-grid-gap)'}}>
+          <FeatureCard chip="navy" icon={<Ico d={<><path d="M7 17 17 7M9 7h8v8"/></>} />} title="Programming continuity">Support does not end when a cohort ends.</FeatureCard>
+          <FeatureCard chip="teal" icon={<Ico d={<><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></>} />} title="Founder transformation">Develop founders into business strategists.</FeatureCard>
+          <FeatureCard chip="orange" hoverFill icon={<Ico d={<><path d="M12 2v20"/><path d="M16.5 6.5C16.5 4.7 14.4 4 12 4S7.5 4.9 7.5 7.2"/></>} />} title="Capital discipline">Milestone-based capital plans and clarity.</FeatureCard>
+        </div>
+      </div>
+      <div>
+        <p className="lbl">Journey steps &middot; one featured</p>
+        <div style={{display:'grid',gap:18}}>
+          <StepCard number="02" title="Accelerator Embedded Curriculum">Mentorship, worksheets, and milestone tracking.</StepCard>
+          <StepCard number="03" title="Post-Accelerator Investor Readiness" featured>Investor narrative, capital sequencing, follow-through.</StepCard>
+        </div>
+      </div>
+      <div>
+        <p className="lbl">Pills</p>
+        <div className="row" style={{justifyContent:'center'}}>
+          <Pill>Investor narrative</Pill><Pill>Capital roadmap</Pill><Pill>Milestone tracking</Pill><Pill>Financial clarity</Pill>
+        </div>
+      </div>
+      <div>
+        <p className="lbl">Stats on dark &middot; badges</p>
+        <div className="dark" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:14}}>
+          <StatBlock onDark value="12+" label="years curriculum development" />
+          <StatBlock onDark value="500+" label="startups influenced" />
+          <StatBlock onDark value="200,000+" label="investor network with AI matching" />
+        </div>
+        <div className="row" style={{marginTop:14}}>
+          <Badge>You are here</Badge><Badge tone="navy">Cohort 04</Badge><Badge tone="success" dot>Live</Badge><Badge tone="soft">Post-program</Badge>
+        </div>
+      </div>
+      <div>
+        <p className="lbl">Testimonial</p>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'var(--hw-grid-gap)'}}>
+          <Testimonial name="Ismael El-Amin" role="Founder, Ubuntu Sales Solutions" quote="The structure gave us a clear path from idea to a plan investors could actually evaluate." />
+          <Testimonial name="Heath Butler" role="Partner" quote="Founders leave with discipline, not just a deck." />
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Card />);
+</script></body></html>

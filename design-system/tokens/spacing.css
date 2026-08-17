@@ -1,0 +1,37 @@
+:root{
+  /* spacing scale */
+  --hw-space-1:4px;
+  --hw-space-2:8px;
+  --hw-space-3:12px;
+  --hw-space-4:16px;
+  --hw-space-5:20px;
+  --hw-space-6:26px;
+  --hw-space-7:34px;
+  --hw-space-8:42px;
+  --hw-space-9:54px;
+  --hw-space-10:64px;
+  --hw-space-11:84px;
+
+  /* layout */
+  --hw-container:1180px;
+  --hw-container-pad:28px;
+  --hw-container-pad-mobile:20px;
+  --hw-section-y:84px;
+  --hw-section-y-mobile:58px;
+  --hw-grid-gap:26px;
+  --hw-split-gap:54px;
+  --hw-header-h:78px;
+
+  /* radii */
+  --hw-radius-sm:6px;
+  --hw-radius-md:11px;
+  --hw-radius-card:14px;
+  --hw-radius-lg:16px;
+  --hw-radius-panel:20px;
+  --hw-radius-xl:24px;
+  --hw-radius-pill:100px;
+
+  /* breakpoints (reference values) */
+  --hw-bp-tablet:980px;
+  --hw-bp-mobile:620px;
+}

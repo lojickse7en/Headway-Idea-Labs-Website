@@ -1,0 +1,51 @@
+:root{
+  /* ---- brand core ---- */
+  --hw-navy:#0E2A4D;
+  --hw-navy-deep:#0A1F3A;
+  --hw-orange:#F5841F;
+  --hw-orange-hot:#FD7900;
+  --hw-orange-light:#F8B170;
+  --hw-teal:#40A9C9;
+
+  /* ---- neutrals ---- */
+  --hw-ink:#2A3342;
+  --hw-muted:#5B6676;
+  --hw-line:#E7EBF1;
+  --hw-white:#FFFFFF;
+
+  /* ---- surfaces ---- */
+  --hw-surface:#FFFFFF;
+  --hw-surface-warm:#FFF9F3;
+  --hw-surface-peach:#FEF7F0;
+  --hw-surface-tint:#F7F9FC;
+  --hw-surface-blue:#EEF5FB;
+
+  /* ---- footer / dark ---- */
+  --hw-footer:#281F18;
+  --hw-slate:#4C5B6B;
+
+  /* ---- support / semantic ---- */
+  --hw-success:#1F8A5B;
+  --hw-success-bg:#E8F6EE;
+  --hw-orange-bg:#FDECDC;
+  --hw-hover-border:#BCD8F5;
+  --hw-hover-fill:#EAF3FC;
+
+  /* ---- gradients ---- */
+  --hw-gradient-button:linear-gradient(95.4deg, #FD7900 63%, #F8B170 100%);
+  --hw-gradient-navy:radial-gradient(120% 140% at 85% -10%, #1F558A 0%, #123A63 45%, #0A2138 100%);
+  --hw-gradient-hero:radial-gradient(125% 130% at 88% -10%, #F7D9BD 0%, #FDEEDE 40%, #FFFFFF 72%);
+
+  /* ---- semantic aliases ---- */
+  --text-heading:var(--hw-navy);
+  --text-body:var(--hw-muted);
+  --text-strong:var(--hw-ink);
+  --text-accent:var(--hw-orange);
+  --text-on-dark:#CDD9E6;
+  --surface-page:var(--hw-white);
+  --surface-alt:var(--hw-surface-warm);
+  --surface-card:var(--hw-white);
+  --surface-dark:var(--hw-navy);
+  --border-subtle:var(--hw-line);
+  --accent-fill:var(--hw-gradient-button);
+}

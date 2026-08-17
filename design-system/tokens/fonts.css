@@ -1,0 +1,4 @@
+/* Headway Idea Labs webfonts — served from Google Fonts (the live WordPress site
+   loads them the same way via Elementor's google_font-enabled setting).
+   No self-hosted binaries exist in the source; see readme.md "Fonts" caveat. */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap");

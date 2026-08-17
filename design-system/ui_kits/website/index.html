@@ -1,0 +1,62 @@
+<!-- @dsCard group="Website" viewport="1440x900" subtitle="Marketing site — homepage and programme page, click-through nav" name="Website UI kit" -->
+<!-- @startingPoint section="Website" subtitle="Full marketing page shell with header, sections and footer" viewport="1440x900" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Headway Idea Labs — Website UI Kit</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--hw-font-body);color:var(--hw-ink);background:#fff;line-height:var(--hw-lh-body);-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:var(--hw-font-head);color:var(--hw-navy);margin:0;line-height:var(--hw-lh-heading);letter-spacing:var(--hw-track-heading)}
+  p{margin:0}
+  a{text-decoration:none;color:inherit}
+  img{display:block;max-width:100%}
+  .hw-container{max-width:var(--hw-container);margin:0 auto;padding:0 var(--hw-container-pad)}
+  .hw-section{padding:var(--hw-section-y) 0}
+  .hw-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--hw-grid-gap)}
+  .hw-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--hw-grid-gap)}
+  @media (max-width:980px){.hw-grid-3{grid-template-columns:1fr 1fr}}
+  @media (max-width:620px){.hw-grid-3,.hw-grid-2{grid-template-columns:1fr}.hw-section{padding:var(--hw-section-y-mobile) 0}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script>
+  // The compiled bundle exposes one namespace object; find it and publish the primitives.
+  (function(){
+    var need = ['Button','FeatureCard','SectionHeading'];
+    var ns = null;
+    Object.keys(window).forEach(function(k){
+      if (ns) return;
+      try { var v = window[k];
+        if (v && typeof v === 'object' && need.every(function(n){ return typeof v[n] === 'function'; })) ns = v;
+      } catch(e){}
+    });
+    window.HW = ns || {};
+    Object.assign(window, window.HW);
+    window.HW_ASSETS = {
+      logo: '../../assets/logo/headway-logo.png',
+      logoWhite: '../../assets/logo/headway-logo-white.svg',
+      banner: 'https://i0.wp.com/headwayidealabs.io/wp-content/uploads/2025/09/banner.webp?fit=1920%2C814&ssl=1',
+      heroCut: '../../assets/images/hero-founder.webp',
+      img1: 'https://i0.wp.com/headwayidealabs.io/wp-content/uploads/2025/08/img1.png?fit=463%2C350&ssl=1',
+      img2: 'https://i0.wp.com/headwayidealabs.io/wp-content/uploads/2025/08/img2.png?fit=463%2C350&ssl=1',
+      img3: 'https://i0.wp.com/headwayidealabs.io/wp-content/uploads/2025/08/img3.png?fit=463%2C350&ssl=1',
+      face1: 'https://i0.wp.com/headwayidealabs.io/wp-content/uploads/2025/08/ismael-el-amin.jpg',
+      face2: 'https://i0.wp.com/headwayidealabs.io/wp-content/uploads/2025/08/heathbutler.jpg',
+      face3: 'https://i0.wp.com/headwayidealabs.io/wp-content/uploads/2025/08/patricia-vega.jpg'
+    };
+  })();
+</script>
+<script type="text/babel" src="SiteChrome.jsx"></script>
+<script type="text/babel" src="HomeScreen.jsx"></script>
+<script type="text/babel" src="ProgramScreen.jsx"></script>
+<script type="text/babel" src="App.jsx"></script>
+</body>
+</html>
